@@ -61,15 +61,12 @@ class FGPL_1_Trainer(GeneralTorchTrainer):
 
                 new_edge_index = neighbor_sampling(batch.x.size(0), batch.edge_index[:, ctx.train_edge_mask], sampling_ref_idx,
                                                    ctx.neighbor_dist_list)
-                gama = torch.FloatTensor(len(sampling_ref_idx)).fill_(self._cfg.fgpl.gama).unsqueeze(
+                gama = torch.FloatTensor(len(sampling_ref_idx)).fill_(1-self._cfg.fgpl.gama).unsqueeze(
                     1)
                 new_x = saliency_mixup(batch.x, sampling_ref_idx, sampling_tar_idx, gama)
             else:
                 sampling_ref_idx, sampling_tar_idx = sampling_idx_individual_dst(ctx.class_num_list, ctx.idx_info, torch.device(ctx.device))
-                # gama = torch.FloatTensor(len(sampling_ref_idx)).fill_(self._cfg.fgpl.gama).unsqueeze(
-                #     1)
-                beta = torch.distributions.beta.Beta(1, 100)
-                gama = beta.sample((len(sampling_ref_idx),)).unsqueeze(
+                gama = torch.FloatTensor(len(sampling_ref_idx)).fill_(1-self._cfg.fgpl.gama).unsqueeze(
                     1)
                 new_edge_index = duplicate_neighbor(batch.x.size(0), batch.edge_index[:, ctx.train_edge_mask], sampling_ref_idx)
                 new_x = saliency_mixup(batch.x, sampling_ref_idx, sampling_tar_idx, gama)
@@ -85,7 +82,7 @@ class FGPL_1_Trainer(GeneralTorchTrainer):
                                                sampling_ref_idx,
                                                ctx.neighbor_dist_list)
 
-            gama=torch.FloatTensor(len(sampling_ref_idx)).fill_(self._cfg.fgpl.gama).unsqueeze(
+            gama=torch.FloatTensor(len(sampling_ref_idx)).fill_(1-self._cfg.fgpl.gama).unsqueeze(
                 1)
             new_x = saliency_mixup(batch.x, sampling_ref_idx, sampling_tar_idx, gama)
 
