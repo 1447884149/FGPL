@@ -1,7 +1,7 @@
 set -e
 cd ../../../ #到federatedscope目录
 method=FedGH
-# cd /data/yhp2022/FS/federatedscope/model_heterogeneity/SFL_methods/FedGH
+# cd /data/yhp2022/FGPL/federatedscope/model_heterogeneity/SFL_methods/FedGH
 # basic configuration
 gpu=4
 local_eval_whole_test_dataset=True
@@ -9,8 +9,8 @@ result_folder_name=${method}_SFL_HPO_0904_test_on_whole_graph
 script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 # common hyperparameters
-dataset=('photo')
-total_client=(7)
+dataset=('cora' 'citeseer')
+total_client=(5 7 10)
 local_update_step=(1 4 16)
 optimizer='SGD'
 seed=(0 1 2)

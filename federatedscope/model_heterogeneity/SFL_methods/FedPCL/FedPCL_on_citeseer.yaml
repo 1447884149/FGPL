@@ -43,7 +43,7 @@ grad:
   grad_clip: 5.0
 eval:
   freq: 1
-  metrics: ['acc','acc_based_on_local_prototype','acc_based_on_global_prototype']
+  metrics: ['acc', 'acc_based_on_local_prototype', 'f1score', 'bac','acc_based_on_global_prototype','f1_based_on_global_prototype','bac_based_on_global_prototype']
   report : ['weighted_avg', 'avg']
   best_res_update_round_wise_key: val_acc
 vis_embedding: False

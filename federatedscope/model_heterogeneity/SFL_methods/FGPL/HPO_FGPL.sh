@@ -1,7 +1,7 @@
 set -e
 cd ../../../ #到federatedscope目录
 # basic configuration
-# cd /data/yhp2022/FS/federatedscope/model_heterogeneity/SFL_methods/FGPL
+# cd /data/yhp2022/FGPL/federatedscope/model_heterogeneity/SFL_methods/FGPL
 gpu=3
 result_folder_name=FGPL
 global_eval=False
@@ -10,11 +10,10 @@ method=FGPL
 script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 # common hyperparameters
-dataset=('photo')
+dataset=('computers')
 total_client=(10)
-local_update_step=(5)
+local_update_step=(5 10)
 optimizer='SGD'
-seed=(0 1 2)
 lrs=(0.05 0.1 0.25)
 total_round=200
 patience=60

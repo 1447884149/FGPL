@@ -1,8 +1,8 @@
 set -e
 cd ../../../ #到federatedscope目录
-# cd /data/yhp2022/FS/federatedscope/model_heterogeneity/SFL_methods/FML
+# cd /data/yhp2022/FGPL/federatedscope/model_heterogeneity/SFL_methods/FML
 # basic configuration
-gpu=6
+gpu=8
 meme_model=gcn
 result_folder_name="FML_gcn_HPO_0907_test_on_whole_graph"
 local_eval_whole_test_dataset=True
@@ -11,8 +11,8 @@ method=FML
 script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 # common hyperparameters
-dataset=('computers')
-total_client=(7 10)
+dataset=('cora')
+total_client=(5 7)
 local_update_step=(1 4 16)
 optimizer='SGD'
 seed=(0 1 2)

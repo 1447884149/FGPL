@@ -641,12 +641,22 @@ def result_to_csv(result, init_cfg, best_round, runner, client_cfg_file):
 
     if init_cfg.show_client_best_individual:
         individual_best_avg_result = show_per_client_best_individual(runner)
+        out_dict['individual_best_bac_avg'] = individual_best_avg_result['test_bac']
+        out_dict['individual_best_f1score_avg'] = individual_best_avg_result['test_f1score']
         out_dict['individual_best_test_acc_avg'] = individual_best_avg_result['test_acc']
-        if out_dict['method'][0] == 'fedproto' or out_dict['method'][0] == 'fedpcl':
+        if out_dict['method'][0] == 'fedproto':
             gp_test_acc = individual_best_avg_result['test_acc_based_on_global_prototype']
             lp_test_acc = individual_best_avg_result['test_acc_based_on_local_prototype']
             out_dict['individual_avg_test_acc_with_global_prototype'] = gp_test_acc
             out_dict['individual_avg_test_acc_with_local_prototype'] = lp_test_acc
+        if out_dict['method'][0] == 'fedpcl':
+            out_dict['individual_avg_test_acc_with_global_prototype'] = individual_best_avg_result['test_acc_based_on_global_prototype']
+            out_dict['individual_avg_test_acc_with_local_prototype'] = individual_best_avg_result['test_acc_based_on_local_prototype']
+            out_dict['individual_avg_test_f1_with_global_prototype'] = individual_best_avg_result[
+                'test_f1_based_on_global_prototype']
+            out_dict['individual_avg_test_pre_with_local_prototype'] = individual_best_avg_result[
+                'test_bac_based_on_global_prototype']
+
         if 'test_ensemble_model_acc' in individual_best_avg_result.keys():
             out_dict['test_ensemble_model_acc'] = individual_best_avg_result['test_ensemble_model_acc']
 
@@ -702,7 +712,7 @@ def show_per_client_best_individual(runner):
         for key in history_result.keys():
             value = best_results.get(key, 0.0)
             total[key] += value
-            if value != 0.0 and 'acc' in key:
+            if value != 0.0 and ('acc'in key or 'bac' in key or 'f1score' in key ):
                 print(f"best_{key}: {value} ")
 
     if runner.cfg.plot_acc_curve:

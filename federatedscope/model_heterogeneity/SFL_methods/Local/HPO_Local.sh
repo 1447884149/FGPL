@@ -9,8 +9,8 @@ method=Local
 script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 # common hyperparameters
-dataset=('photo')
-total_client=(7)
+dataset=('cora' 'citeseer' 'computers')
+total_client=(5 7 10)
 local_update_step=(4 16 32)
 optimizer='SGD'
 seed=(0 1 2)

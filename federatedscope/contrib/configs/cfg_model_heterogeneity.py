@@ -142,7 +142,10 @@ def extend_model_heterogeneous_cfg(cfg):
     cfg.fedproto.shots = 100
     cfg.fedproto.train_shots_max = 110
     cfg.fedproto.test_shots = 15
-
+    cfg.fedproto.proto_weight= 0.1
+    cfg.fedproto.n_cls = 7
+    cfg.fedproto.infoNCET = 0.02
+    cfg.fedproto.lamda = 0.5
     # other options
     cfg.fedproto.show_verbose = False  # Weather display verbose loss information
     # ---------------------------------------------------------------------- #

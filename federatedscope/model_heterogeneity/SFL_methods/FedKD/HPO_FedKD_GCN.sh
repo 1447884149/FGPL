@@ -1,8 +1,8 @@
 set -e
 cd ../../../ #到federatedscope目录
-# cd /data/yhp2022/FS/federatedscope/model_heterogeneity/SFL_methods/FedKD
+# cd /data/yhp2022/FGPL/federatedscope/model_heterogeneity/SFL_methods/FedKD
 # basic configuration
-gpu=6
+gpu=7
 method=FedKD
 global_model=gcn
 result_folder_name="FedKD_"${global_model}"_HPO_0907_test_on_whole_graph"
@@ -10,12 +10,12 @@ local_eval_whole_test_dataset=True
 script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 # common hyperparameters
-dataset=('photo')
+dataset=('computers' 'cora' 'citeseer')
 total_client=(7 10)
 local_update_step=(1 4 16)
 optimizer='SGD'
 seed=(0 1 2)
-lrs=(0.05)
+lrs=(0.05 0.1 0.25)
 total_round=200
 patience=50
 momentum=0.9

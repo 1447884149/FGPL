@@ -44,7 +44,7 @@ grad:
   grad_clip: 5.0
 eval:
   freq: 1
-  metrics: ['acc']
+  metrics: ['acc', 'f1score', 'bac']
   report : ['weighted_avg', 'avg']
   best_res_update_round_wise_key: val_acc
 vis_embedding: True

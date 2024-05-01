@@ -1,12 +1,12 @@
 use_gpu: True
-device: 6
-seed: 0
+device: 5
+seed: 1
 early_stop:
   patience: 60
 federate:
   mode: standalone
   method: fgpl_worker
-  client_num: 10
+  client_num: 5
   sample_client_rate: 1.0
   total_round_num: 150
   make_global_eval: False
@@ -16,11 +16,11 @@ fgpl:
   infoNCET: 0.02
   lamda: 0.5
   mu: 0.5
-  imb_ratio: 80
+  imb_ratio: 100
   gdc: 'ppr'
   warmup: 5
   tau: 2
-  gama: 0.98
+  gama: 1
 data:
   root: data/
   type: computers
@@ -42,7 +42,7 @@ train:
   batch_or_epoch: epoch
   optimizer:
     type: SGD
-    lr: 0.05
+    lr: 0.30 #0.25 10
     weight_decay: 5e-4
 criterion:
   type: CrossEntropyLoss
@@ -52,7 +52,7 @@ grad:
   grad_clip: 5.0
 eval:
   freq: 1
-  metrics: ['acc']
+  metrics: ['acc', 'f1score', 'bac']
   report : ['weighted_avg', 'avg']
   best_res_update_round_wise_key: val_acc
 vis_embedding: False

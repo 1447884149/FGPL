@@ -185,7 +185,7 @@ class GeneralTorchTrainer(Trainer):
         ctx.loss_regular_total = CtxVar(0., LIFECYCLE.ROUTINE)
         ctx.num_samples = CtxVar(0, LIFECYCLE.ROUTINE)
         ctx.ys_true = CtxVar([], LIFECYCLE.ROUTINE)
-        ctx.ys_prob = CtxVar([], LIFECYCLE.ROUTINE)
+        ctx.y_pred = CtxVar([], LIFECYCLE.ROUTINE)
 
     def _hook_on_fit_start_calculate_model_size(self, ctx):
         """

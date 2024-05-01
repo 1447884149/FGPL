@@ -6,7 +6,7 @@ early_stop:
 federate:
   mode: standalone
   method: fedproto
-  client_num: 3
+  client_num: 5
   sample_client_rate: 1.0
   total_round_num: 200
   make_global_eval: False
@@ -44,8 +44,9 @@ grad:
   grad_clip: 5.0
 eval:
   freq: 1
-  metrics: ['acc']
+  metrics: ['acc', 'f1score', 'bac']
   report : ['weighted_avg', 'avg']
   best_res_update_round_wise_key: val_acc
 vis_embedding: False
 show_label_distribution: True
+show_client_best_individual: True

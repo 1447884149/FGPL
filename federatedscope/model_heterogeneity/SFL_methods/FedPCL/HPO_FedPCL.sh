@@ -1,9 +1,9 @@
 set -e
 cd ../../../ #到federatedscope目录
-
+# /data/yhp2022/FGPL/federatedscope/model_heterogeneity/SFL_methods/FedPCL
 # basic configuration
 gpu=0
-result_folder_name=FedProto_HPO_1206_test_on_whole_graph
+result_folder_name=fedpcl
 global_eval=False
 local_eval_whole_test_dataset=True
 
@@ -12,8 +12,8 @@ script_floder="model_heterogeneity/SFL_methods/"${method}
 result_floder=model_heterogeneity/result/${result_folder_name}
 
 # common hyperparameters
-dataset=('cora' 'citeseer' 'pubmed')
-total_client=(3 5 10)
+dataset=('computers')
+total_client=(5 7 10)
 local_update_step=(1 4 16)
 optimizer='SGD'
 seed=(0 1 2)

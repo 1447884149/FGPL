@@ -4,6 +4,7 @@ from typing import Optional, Union, List, Set
 import numpy as np
 from scipy.special import softmax
 from sklearn.metrics import roc_auc_score, average_precision_score, f1_score
+from sklearn.preprocessing import MultiLabelBinarizer
 
 from federatedscope.core.auxiliaries.metric_builder import get_metric
 
@@ -227,6 +228,14 @@ def eval_hits(y_true, y_prob, metric, **kwargs):
 
 def eval_roc_auc(y_true, y_prob, **kwargs):
     rocauc_list = []
+
+# //gai
+#     num_classes = y_prob.shape[1]  # 总共有7个类
+#     # 创建 MultiLabelBinarizer 对象，并指定类别数量
+#     mlb = MultiLabelBinarizer(classes=range(num_classes))
+#     # 将单标签转换为多标签的二进制编码形式
+#     y_true = mlb.fit_transform(y_true)
+
 
     for i in range(y_true.shape[1]):
         # AUC is only defined when there is at least one positive data.

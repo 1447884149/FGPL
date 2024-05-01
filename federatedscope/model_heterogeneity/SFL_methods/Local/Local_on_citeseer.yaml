@@ -8,7 +8,7 @@ federate:
   mode: standalone
   make_global_eval: False
   sample_client_rate: 1.0
-  client_num: 10
+  client_num: 7
   total_round_num: 200
 data:
   root: data/
@@ -38,7 +38,7 @@ trainer:
   type: nodefullbatch_trainer
 eval:
   freq: 1
-  metrics: [ 'acc' ]
+  metrics: ['acc', 'f1score', 'bac']
   report: [ 'weighted_avg', 'avg' ]
   best_res_update_round_wise_key: val_acc
 
